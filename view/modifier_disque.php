@@ -1,14 +1,14 @@
 <?php
-include "./controller/controller_modifier_disque.php";
-//var_dump($_FILES);
-//var_dump($_FILES['image']);
-//var_dump($resultat);
-?>
+include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_modifier_disque.php";
+//var_dump(($_POST));
+if (!isset($_POST['envoi']) or isset($_POST['envoi']) and !empty($verifform)) {
+
+    ?>
 
 
     <form action="<?= $_SERVER['PHP_SELF'] ?>"
           class="form-group col-10 d-flex flex-column align-items-start justify-content-start" method="post"
-          enctype="multipart/form-data">
+          enctype="multipart/form-data" id="formmodif">
         <p class="h3 text-center">Modification de <?= $resultat ? $resultat->disc_title : $_POST['titre'] ?> </p>
         <div class="col-12 d-flex flex-row">
             <div class="col-4 me-2">
@@ -75,10 +75,19 @@ include "./controller/controller_modifier_disque.php";
 
         </div>
     </form>
+<?php } else {
+    ?>
+    <div class="d-flex flex-column align-items-center">
+        <h1 class="alert alert-success"> Modification réussie</h1>
+        <a href="/view/liste_disques.php" class="btn btn-info">Retour à la liste des disques</a>
+        <p>Vous allez être redirigé dans <span id="compteur">5</span> secondes...</p>
+    </div>
 
+    <?php
+    header("refresh: 5; url=liste_disques.php");
+}
+?>
+    <script src="/view/assets/JavaScript/scripts.js"></script>
 <?php
-
-//var_dump($_GET['disc_id']);
-//var_dump($_POST['disc_id']);
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

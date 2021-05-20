@@ -22,3 +22,8 @@ const supform = document.getElementById('supprform');
 supform.onsubmit = function (){
     return confirm('Êtes vous sûr de vouloir supprimer ce disque? la suppression est irréversible.');
 }
+const formmodif = document.getElementById('formmodif');
+
+formmodif.onsubmit = function (){
+    return confirm('Êtes vous sûr de vouloir supprimer ce disque? la suppression est irréversible.');
+}

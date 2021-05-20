@@ -1,6 +1,7 @@
 <?php
+echo "<pre>" . $_SERVER["DOCUMENT_ROOT"] . "\n". __FILE__ . "\n" . getcwd() . "\n</pre>";
 $titre = "Index de l'évaluation php";
-include "./view/header_footer/header.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/header.php";
 ?>
 <div class="d-flex flex-column">
     <div class="d-flex justify-content-center">
@@ -16,5 +17,5 @@ include "./view/header_footer/header.php";
 </div>
 
 <?php
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

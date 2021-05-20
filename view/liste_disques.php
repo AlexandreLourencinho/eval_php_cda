@@ -1,5 +1,7 @@
 <?php
-include "./controller/controller_liste_disques.php";
+//echo "<pre>" . $_SERVER["DOCUMENT_ROOT"] . "\n". __FILE__ . "\n" . getcwd() . "\n</pre>";
+include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_liste_disques.php";
+
 ?>
 
 <div class="d-flex flex-wrap justify-content-start m-0 col-12 col-md-10">
@@ -8,6 +10,7 @@ include "./controller/controller_liste_disques.php";
         <a class="btn btn-primary" href="/view/formulaire_ajout.php">Ajouter</a>
     </div>
     <?php
+//    var_dump($resultat);
     foreach ($resultat as $disque) {
         ?>
         <div class="col-12 col-md-6 d-flex flex-lg-row mb-3 bla align-items-center border border-lg-none">
@@ -36,5 +39,5 @@ include "./controller/controller_liste_disques.php";
 
 
 <?php
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

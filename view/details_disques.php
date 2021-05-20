@@ -1,5 +1,5 @@
 <?php
-include "./controller/controller_details_disques.php";
+include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_details_disques.php";
 if (isset($_GET['disc_id'])) {
     ?>
 
@@ -82,5 +82,5 @@ if (isset($_GET['disc_id'])) {
 
 
 <?php
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

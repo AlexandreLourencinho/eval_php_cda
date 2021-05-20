@@ -1,5 +1,5 @@
 <?php
-include "./controller/controller_supprimer_disques.php";
+include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_supprimer_disques.php";
 if (!isset($suppr)) {
     ?>
 
@@ -65,7 +65,7 @@ if (!isset($suppr)) {
 
 
     <?php
-    header("refresh: 5; url=liste_disques.php");
+    header("refresh: 5; url=/view/liste_disques.php");
 }elseif(isset($suppri) and $suppr['resultat']===false){ ?>
 <div class="d-flex flex-column align-items-center">
     <h2 class="alert alert-danger">Un problème est survenu : <?= $suppr['message'] ?>.</h2>
@@ -79,5 +79,5 @@ if (!isset($suppr)) {
 
 <script src="/view/assets/JavaScript/scripts.js"></script>
 <?php
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

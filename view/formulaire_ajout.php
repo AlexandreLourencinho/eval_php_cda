@@ -1,5 +1,5 @@
 <?php
-include "./controller/controller_formulaire_ajout.php";
+include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_formulaire_ajout.php";
 if(!isset($_POST['envoi']) or isset($_POST['envoi']) and  !empty($verifform)){
 ?>
 
@@ -49,5 +49,5 @@ if(!isset($_POST['envoi']) or isset($_POST['envoi']) and  !empty($verifform)){
 <?php
     header("refresh: 5; url=liste_disques.php");
 }
-include "./view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
 ?>

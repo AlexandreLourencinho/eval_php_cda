@@ -1,6 +1,6 @@
 <?php
-include "./controller/fonctions/checkForm.php";
-require "./model/CRUD/CRUD_record.php";
+include $_SERVER["DOCUMENT_ROOT"]."/controller/fonctions/checkForm.php";
+require $_SERVER["DOCUMENT_ROOT"]."/model/CRUD/CRUD_record.php";
 // création d'une nouvelle instance de connexion a la bdd + crud avec cette connexion a la bdd
 $conn = new db_records();
 $crud = new crud($conn);
@@ -34,7 +34,8 @@ if (isset($_POST['envoi'])) {
         // est définit.
         if (in_array($typeMime, $tableTypesMimes)) {
             /* Le type est parmi ceux autorisés, donc OK */
-            $nouveaunom = $title . ".jpg";
+            $tempvar = uniqid();
+            $nouveaunom = $tempvar.".jpg";
             $img = true;
         } else {
             // si le type ne correspond pas, on insert dans le tableau d'erreur le message d'erreur ici bas.
@@ -46,8 +47,8 @@ if (isset($_POST['envoi'])) {
         // ici, si il y a une image et qu'elle a le bon type mime, utilisation de la variable $img passée a true
         // et déplacement du fichier vers le dossier correspondant, + attribution des droits en lecture seule (normalement ^^)
         if ($img === true) {
-            move_uploaded_file($_FILES['image']['tmp_name'], "./view/assets/images/" . $title . ".jpg");
-            chmod("./view/assets/images/" . $title . ".jpg", 0444);
+            move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER["DOCUMENT_ROOT"]."/view/assets/images/" . $nouveaunom);
+//            chmod("./view/assets/images/" . $title . ".jpg", 0444);
         }
         // execution de la requête d'insertion avec les données du POST, et le nouveau nom qui sera celui de l'image, ou null
         //s'il n'y en a pas eu d'uploadé
@@ -67,5 +68,5 @@ if (isset($_POST['envoi'])) {
 
 $resultat = $crud->getArtists();
 $titre = "formulaire d'ajout de disques";
-include "./view/header_footer/header.php";
+include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/header.php";
 ?>
