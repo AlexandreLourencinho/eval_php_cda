@@ -2,7 +2,7 @@
 
 class db_records
 {
-    private $host = "localhost:3308";
+    private $host = "localhost:3306";
     private $dbname = "record";
     private $charset = "UTF8";
     private $user = "root";
