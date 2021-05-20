@@ -1,0 +1,33 @@
+a.text-info:hover {
+    color: aliceblue !important;
+}
+
+img {
+    width: 100% !important;
+}
+.border-lg-none{
+    border-style: none!important;
+}
+.potitext {
+    font-size: small;
+}
+
+@media screen and (max-width: 768px) {
+    div.bla{
+        min-height: 100px;
+        height: 100% !important;
+        overflow: hidden;
+    }
+    .border-lg-none{
+        border-style: solid!important;
+    }
+    div.h{
+        height: 120%;
+    }
+    /*footer.bleh{*/
+    /*    display: none!important;*/
+    /*}*/
+    u.footitre{
+        font-size: 1.25rem!important;
+    }
+}
