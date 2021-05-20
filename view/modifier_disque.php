@@ -20,7 +20,7 @@ if (!isset($_POST['envoi']) or isset($_POST['envoi']) and !empty($verifform)) {
             <div class="col-4 ms-2">
                 <p><label for="artiste">Artist :</label></p>
                 <select class="form-select col-12" aria-label="Default select example" id="artiste" name="artiste">
-                    <option value="">- Séléctionnez un artiste -</option>
+                    <option disabled>- Séléctionnez un artiste -</option>
                     <?php
                     foreach ($resultat2 as $artistes) {
 
