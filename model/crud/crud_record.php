@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"]."/model/connexion_db/db_records.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/model/connexion_db/db_records.php";
 
 class crud
 {
@@ -75,7 +75,7 @@ class crud
      *fonction pour l'ajout de disque dans la base de donénes
      * @return array
      */
-    public function ajouterDisque($titre, $artiste, $annee, $genre, $label, $prix, $image)
+    public function ajouterDisque($titre, $annee, $image, $label, $genre, $prix, $artiste)
     {
         try {
 
@@ -120,49 +120,48 @@ class crud
 
     }
 
-    public function modifierDisque($titre,$artiste,$annee,$label,$genre,$prix,$id){
+    public function modifierDisque($titre, $annee, $label, $genre, $prix, $artiste, $id)
+    {
         try {
             $requete = $this->db->prepare('UPDATE record.disc SET disc_title=:titre, disc_year = :annee, disc_label = :label, 
                        disc_genre = :genre,disc_price = :prix, artist_id = :artiste WHERE disc_id=:disc_id');
-            $requete->bindValue(':titre',$titre,PDO::PARAM_STR);
-            $requete->bindValue(':annee',$annee,PDO::PARAM_INT);
-            $requete->bindValue(':label',$label,PDO::PARAM_STR);
-            $requete->bindValue(':genre',$genre,PDO::PARAM_STR);
-            $requete->bindValue(':prix',$prix,PDO::PARAM_STR);
-            $requete->bindValue(':disc_id',$id,PDO::PARAM_INT);
-            $requete->bindValue(':artiste',$artiste,PDO::PARAM_INT);
+            $requete->bindValue(':titre', $titre, PDO::PARAM_STR);
+            $requete->bindValue(':annee', $annee, PDO::PARAM_INT);
+            $requete->bindValue(':label', $label, PDO::PARAM_STR);
+            $requete->bindValue(':genre', $genre, PDO::PARAM_STR);
+            $requete->bindValue(':prix', $prix, PDO::PARAM_STR);
+            $requete->bindValue(':disc_id', $id, PDO::PARAM_INT);
+            $requete->bindValue(':artiste', $artiste, PDO::PARAM_INT);
 
-            if($requete->execute()){
-                return array('resultat'=>true, 'message'=>'Modification réussie');
-            }
-            else{
-                return array('resultat'=>false,'message'=>'Echec de la modification');
+            if ($requete->execute()) {
+                return array('resultat' => true, 'message' => 'Modification réussie');
+            } else {
+                return array('resultat' => false, 'message' => 'Echec de la modification');
             }
 
-        }
-        catch (Exception $message){
+        } catch (Exception $message) {
             $message->getMessage();
             $message->getCode();
-            return array('resultat'=>false, 'message'=>$message);
+            return array('resultat' => false, 'message' => $message);
         }
     }
-    public function modifImage($image,$id){
+
+    public function modifImage($image, $id)
+    {
         try {
-            $requete=$this->db->prepare('UPDATE record.disc SET disc_picture=:image WHERE disc_id=:disc_id');
-            $requete->bindValue(":image",$image, PDO::PARAM_STR);
-            $requete->bindValue(":disc_id",$id, PDO::PARAM_INT);
-            if($requete->execute()){
-                return array('resultat'=>true,'message'=>"insertion de l'image réussie");
-            }
-            else{
-                return array('resultat'=>false,'message'=>"Echec de la modification de l'image");
+            $requete = $this->db->prepare('UPDATE record.disc SET disc_picture=:image WHERE disc_id=:disc_id');
+            $requete->bindValue(":image", $image, PDO::PARAM_STR);
+            $requete->bindValue(":disc_id", $id, PDO::PARAM_INT);
+            if ($requete->execute()) {
+                return array('resultat' => true, 'message' => "insertion de l'image réussie");
+            } else {
+                return array('resultat' => false, 'message' => "Echec de la modification de l'image");
             }
 
-        }
-        catch (Exception $message){
+        } catch (Exception $message) {
             $message->getCode();
             $message->getMessage();
-            return array('resultat'=>false,'message'=>$message);
+            return array('resultat' => false, 'message' => $message);
         }
     }
 

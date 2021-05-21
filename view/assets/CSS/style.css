@@ -1,3 +1,7 @@
+html {
+    min-height: 100% !important;
+}
+
 a.text-info:hover {
     color: aliceblue !important;
 }
@@ -5,29 +9,58 @@ a.text-info:hover {
 img {
     width: 100% !important;
 }
-.border-lg-none{
-    border-style: none!important;
+
+.border-lg-none {
+    border-style: none !important;
 }
+
 .potitext {
     font-size: small;
 }
 
-@media screen and (max-width: 768px) {
-    div.bla{
+nav.navbar-light {
+    background-color: black !important;
+    border-style: solid !important;
+    border-bottom-color: aliceblue !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+div.bg-dark{
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+footer.bleh {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+body {
+    background-image: url("../../../view/assets/images/fondecran.png");
+    /*background-repeat: no-repeat !important;*/
+    background-size: cover !important;
+    min-height: 100vh !important;
+    display: grid !important;
+    grid-template-rows: auto 1fr auto !important;
+
+}
+
+@media screen and (max-width: 568px) {
+    div.bla {
         min-height: 100px;
         height: 100% !important;
         overflow: hidden;
     }
-    .border-lg-none{
-        border-style: solid!important;
+
+    .border-lg-none {
+        border-style: solid !important;
     }
-    div.h{
+
+    div.h {
         height: 120%;
     }
+
     /*footer.bleh{*/
     /*    display: none!important;*/
     /*}*/
-    u.footitre{
-        font-size: 1.25rem!important;
+    u.footitre {
+        font-size: 1.25rem !important;
     }
 }

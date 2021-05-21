@@ -1,6 +1,6 @@
 <?php
-include $_SERVER["DOCUMENT_ROOT"]."/controller/fonctions/checkForm.php";
-require $_SERVER["DOCUMENT_ROOT"]."/model/CRUD/CRUD_record.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/controller/fonctions/checkForm.php";
+require $_SERVER["DOCUMENT_ROOT"] . "/model/CRUD/CRUD_record.php";
 $conn = new db_records();
 $crud = new crud($conn);
 $resultat = $crud->getRecord();
@@ -23,7 +23,7 @@ if (isset($_POST['envoi'])) {
         'label' => $_POST['label'],
         'prix' => $_POST['prix']);
     $tempvar = uniqid();
-    $nouveaunom = $tempvar.".jpeg";
+    $nouveaunom = $tempvar . ".jpeg";
     $verifform = checkForm($regexTab, $tableauForm);
     // On met les types autorisés dans un tableau (ici pour une image)
     if (is_uploaded_file($_FILES['image']['tmp_name'])) {
@@ -45,32 +45,30 @@ if (isset($_POST['envoi'])) {
 //var_dump($tableauForm);
 if (count($verifform) === 0 && isset($_POST['envoi'])) {
     if ($img == true) {
-        if(move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER["DOCUMENT_ROOT"]."/view/assets/images/".$nouveaunom)){
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER["DOCUMENT_ROOT"] . "/view/assets/images/" . $nouveaunom)) {
             echo "image ok";
-        }
-        else{
-           $verifform['image']="problème d'upload";
+        } else {
+            $verifform['image'] = "problème d'upload";
         }
 //        chmod("./view/assets/images/".$nouveaunom, 0444);
-        $stmt = $crud->modifImage($nouveaunom,$id);
-        if($stmt['resultat']=== false){
-            echo $stmt['message'].' putain de merde';
-        }
-        else{
+        $stmt = $crud->modifImage($nouveaunom, $id);
+        if ($stmt['resultat'] === false) {
+            echo $stmt['message'] . ' putain de merde';
+        } else {
             echo $stmt['message'];
         }
     }
-    $modification = $crud->modifierDisque($tableauForm['titre'], $tableauForm['artiste'], $tableauForm['annee'], $tableauForm['genre'], $tableauForm['label'], $tableauForm['prix'],  $id);
-    if ($modification['resultat'] === false) {
-        echo $modification['message'];
-    } else {
-        echo $modification['message'];
-    }
+    $modification = $crud->modifierDisque($tableauForm['titre'], $tableauForm['annee'], $tableauForm['label'], $tableauForm['genre'], $tableauForm['prix'], $tableauForm['artiste'], $id);
+//    if ($modification['resultat'] === false) {
+//        echo $modification['message'];
+//    } else {
+//        echo $modification['message'];
+//    }
 }
 
 
 //var_dump($_POST);
 $titre = "modification de " . $resultat->disc_title;
-include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/header.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/header.php";
 ?>
 

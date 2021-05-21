@@ -16,7 +16,7 @@ class db_records
 
             $this->dbRecord = new PDO($dsn, $this->user, $this->mdp);
             $this->dbRecord->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Hello database!";
+//            echo "Hello database!";
 
         } catch
         (PDOException $message) {

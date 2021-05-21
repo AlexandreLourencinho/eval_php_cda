@@ -1,33 +1,32 @@
 <?php
 //echo "<pre>" . $_SERVER["DOCUMENT_ROOT"] . "\n". __FILE__ . "\n" . getcwd() . "\n</pre>";
-include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_liste_disques.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/controller/controller_liste_disques.php";
 
 ?>
 
 <div class="d-flex flex-wrap justify-content-start m-0 col-12 col-md-10">
     <div class="col-11 d-flex align-items-center ms-1 me-5">
-        <h1 class="me-auto"><b>Liste des disques (<?= $resultatnombre['0']; ?>)</b></h1>
-        <a class="btn btn-primary" href="/view/formulaire_ajout.php">Ajouter</a>
+        <h1 class="me-auto text-light"><b>Liste des disques (<?= $resultatnombre['0']; ?>)</b></h1>
+        <a class="btn btn-outline-light" href="/view/formulaire_ajout.php" title="ajouter un disque à la base de données">Ajouter</a>
     </div>
     <?php
-//    var_dump($resultat);
+    //    var_dump($resultat);
     foreach ($resultat as $disque) {
         ?>
         <div class="col-12 col-md-6 d-flex flex-lg-row mb-3 bla align-items-center border border-lg-none">
             <div class="col-6 col-lg-3 pe-2 m-0 h">
-                <img src="/view/assets/images/<?= $disque->disc_picture ?>"  class=" " alt="">
+                <img src="/view/assets/images/<?= $disque->disc_picture ?>" alt="pochette du disque <?= $disque->disc_title ?> de <?= $disque->artist_name ?>" title="pochette du disque <?= $disque->disc_title ?> de <?= $disque->artist_name ?>.">
             </div>
-            <div class="col-6 col-md-4 d-flex flex-column align-items-center justify-content-center border">
-                <div class="col-12 mb-2 mb-lg-4">
-                    <span class="h5"><?= $disque->disc_title ?></span><br>
-                    <span class="potitext"><b><?= $disque->artist_name ?></b></span><br>
-                    <b><span>Label :</span></b><span class=""><?= $disque->disc_label ?></span><br>
-                    <b><span>Year :</span></b><span class=""><?= $disque->disc_year ?></span><br>
-                    <b><span>Genre :</span></b><span class=""><?= $disque->disc_genre ?></span><br>
-
+            <div class="col-6 col-md-4 d-flex flex-column align-items-center justify-content-center border bg-dark">
+                <div class="col-12 mb-lg-4">
+                    <span class="h5 text-light"><?= $disque->disc_title ?></span><br>
+                    <span class="potitext text-light"><b><?= $disque->artist_name ?></b></span><br>
+                    <b><span class="text-light"> Label : </span></b><span class="text-light"><?= $disque->disc_label ?></span><br>
+                    <b><span class="text-light"> Year : </span></b><span class="text-light"><?= $disque->disc_year ?></span><br>
+                    <b><span class="text-light"> Genre : </span></b><span class="text-light"><?= $disque->disc_genre ?></span><br>
                 </div>
-                <div class="col-10 mt-2 mt-md-5 mt-lg-5">
-                    <a href="/view/details_disques.php?disc_id=<?= $disque->disc_id ?>" class="btn btn-primary">Détails</a>
+                <div class="col-10 mt-2 mt-md-5 mt-lg-3">
+                    <a href="/view/details_disques.php?disc_id=<?= $disque->disc_id ?>" class="btn btn-outline-info" title="Détails du disque <?= $disque->disc_title ?> de <?= $disque->artist_name ?>.">Détails</a>
                 </div>
             </div>
 
@@ -39,5 +38,5 @@ include $_SERVER["DOCUMENT_ROOT"]."/controller/controller_liste_disques.php";
 
 
 <?php
-include $_SERVER["DOCUMENT_ROOT"]."/view/header_footer/footer.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/footer.php";
 ?>

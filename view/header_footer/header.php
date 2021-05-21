@@ -11,11 +11,11 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon.ico">
     <title><?= $titre ?></title>
 </head>
-<body>
-<header>
+<body class="bg-secondary">
+<header class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.php">Accueil</a>
+            <a class="navbar-brand text-light" href="/index.php" title="lien vers l'accueil de Velvet Record"><i class="fas fa-home"></i> Accueil</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li>
-                        <a class="nav-link" href="/view/liste_disques.php">liste des disques</a>
+                        <a class="nav-link text-light" href="/view/liste_disques.php" title="Accès à la liste des diques"><i class="fas fa-compact-disc"></i> liste des disques</a>
                     </li>
                 </ul>
             </div>
