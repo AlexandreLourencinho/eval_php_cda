@@ -1,8 +1,11 @@
 <?php
+// appel du controller
 include $_SERVER["DOCUMENT_ROOT"] . "/controller/controller_supprimer_disques.php";
+
+// n'apparaît que si la suppression n'a pas été lancée
 if (!isset($suppr)) {
     ?>
-
+<!--affichage des infos du disque a supprimer-->
     <form action="<?= $_SERVER['PHP_SELF'] ?>"
           class="form-group col-12 col-md-10 d-flex flex-column align-items-start justify-content-start" method="post"
           id="supprform">
@@ -57,7 +60,7 @@ if (!isset($suppr)) {
         </div>
     </form>
 <?php } elseif (isset($suppr) and $suppr['resultat'] === true) { ?>
-
+<!-- si le disque a bien été supprimé-->
     <div class="d-flex flex-column align-items-center">
         <h1 class="alert alert-warning">Suppression réussie</h1>
         <a href="/view/liste_disques.php" class="btn btn-outline-info" title="retournez à la liste des disques">Retour à la liste des disques</a>
@@ -66,7 +69,10 @@ if (!isset($suppr)) {
 
 
     <?php
+    // redirection au bout de 5 secondes
     header("refresh: 5; url=/view/liste_disques.php");
+
+    //sinon, si la suppression a été tentée mais a échoué
 } elseif (isset($suppr) and $suppr['resultat'] === false) { ?>
     <div class="d-flex flex-column align-items-center">
         <h2 class="alert alert-danger">Un problème est survenu : <?= $suppr['message'] ?>.</h2>
@@ -77,7 +83,7 @@ if (!isset($suppr)) {
 }
 
 ?>
-
+<!--script js du compteur-->
 <script src="/view/assets/JavaScript/scripts.js"></script>
 <?php
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/footer.php";

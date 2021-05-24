@@ -1,17 +1,17 @@
 <?php
-//echo "<pre>" . $_SERVER["DOCUMENT_ROOT"] . "\n". __FILE__ . "\n" . getcwd() . "\n</pre>";
+// appel du controlleur
 include $_SERVER["DOCUMENT_ROOT"] . "/controller/controller_liste_disques.php";
-
 ?>
-
+<!-- pas sous forme de formulaire -->
 <div class="d-flex flex-wrap justify-content-start m-0 col-12 col-md-10">
     <div class="col-11 d-flex align-items-center ms-1 me-5">
+<!--        nombre de disques-->
         <h1 class="me-auto text-light"><b>Liste des disques (<?= $resultatnombre['0']; ?>)</b></h1>
         <a class="btn btn-outline-light" href="/view/formulaire_ajout.php" title="ajouter un disque à la base de données">Ajouter</a>
     </div>
     <?php
-    //    var_dump($resultat);
     foreach ($resultat as $disque) {
+        // parcours du tableau d'objets des disques
         ?>
         <div class="col-12 col-md-6 d-flex flex-lg-row mb-3 bla align-items-center border border-lg-none">
             <div class="col-6 col-lg-3 pe-2 m-0 h">
