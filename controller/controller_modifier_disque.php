@@ -80,21 +80,15 @@ if (count($verifform) === 0 && isset($_POST['envoi'])) {
         //statement qui appelle la fonction qui modifie le disc_picture du disque correspondant
         $stmt = $crud->modifImage($nouveaunom, $id);
 
-        // problème
+        // si problème
         if ($stmt['resultat'] === false) {
-            echo $stmt['message'] . ' putain de merde';
+            echo $stmt['message'];
         } else {
             echo $stmt['message'];
         }
     }
-
     // appel de la fonction crud qui permet de modifier les infos dans la bdd --cf crud
     $modification = $crud->modifierDisque($tableauForm['titre'], $tableauForm['annee'], $tableauForm['label'], $tableauForm['genre'], $tableauForm['prix'], $tableauForm['artiste'], $id);
-//    if ($modification['resultat'] === false) {
-//        echo $modification['message'];
-//    } else {
-//        echo $modification['message'];
-//    }-- je sais plus pourquoi j'ai commenté ça mdr faudrait que je test ça demain matin
 }
 
 

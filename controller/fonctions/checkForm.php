@@ -14,8 +14,10 @@ function checkForm(array $regex, array $tabPost)
     return $erreurs;
 
 }
-
+// tableau des types mimes utilisé dans modifier et ajouter
 $tableTypesMimes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff", "image/bmp", "image/gif");
+
+// le tableau des regex utilisées pour le contrôle des champs
 $regexTab = [
     'titre' => '#[<\/`\'"\>]#',
     'artiste' => '#[<\/`\'"\>]#',

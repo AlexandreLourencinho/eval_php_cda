@@ -1,20 +1,24 @@
 <?php
-//echo "<pre>" . $_SERVER["DOCUMENT_ROOT"] . "\n". __FILE__ . "\n" . getcwd() . "\n</pre>";
+//titre et appel du header
 $titre = "Index de l'évaluation php";
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/header.php";
 ?>
 <div class="d-flex flex-column">
     <div class="d-flex justify-content-center">
+<!--        titre de la page-->
         <h1><u><b>PHP-CRUD : VELVET RECORD</b></u></h1>
     </div>
+<!--    lien vers l'énoncé-->
     <div class="d-flex justify-content-center">
         <a href="https://ncode.amorce.org/ressources/Pool/CDA/WEB_PHP_frc/PHP_PDO_CRUD.html" class="text-info" title="lien vers l'énoncé de l'exercice">Enoncé de l'exercice</a>
     </div>
+<!--    image d'illustration du crud-->
     <div class="d-flex justify-content-center">
         <img src="/view/assets/images/image_crud.png" alt="image de présentation du crud-php à faire pour l'éval"
              title="image du crud a réaliser" class="p-1 m-1 imgindex">
     </div>
     <div>
+<!--        consignes-->
         <h2><u><b>Evaluation PHP</b></u></h2>
         <ul>
             <li class="text-light">Vous devez réaliser la gestion d'un CRUD sur une table au choix de la base Record.</li>

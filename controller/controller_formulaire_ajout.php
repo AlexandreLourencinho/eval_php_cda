@@ -65,7 +65,7 @@ if (isset($_POST['envoi'])) {
     }
 
 }
-
+// appel de la fonction qui récupère les artistes, titre, puis appel du header
 $resultat = $crud->getArtists();
 $titre = "formulaire d'ajout de disques";
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/header.php";
