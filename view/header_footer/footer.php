@@ -3,7 +3,7 @@
 </div>
 <!--footer-->
 <!--colonne 1-->
-<footer class="d-flex col-12 justify-content-between bg-dark bleh">
+<footer class="d-flex col-12 justify-content-between bg-dark bleh ml-1">
     <div class="d-flex flex-column col-6 col-md-4 border border-dark">
         <p class="h4"><u class=" footitre text-light">Copyright Lourencinho Alexandre ©</u></p>
         <p class="text-light">Ce travail a été réalisé dans le cadre de l'évaluation consacré au php de la formation

@@ -66,4 +66,5 @@ if (!isset($_POST['envoi']) or isset($_POST['envoi']) and !empty($verifform)) {
 //    redirection après 5 secondes
 }
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/footer.php";
+
 ?>

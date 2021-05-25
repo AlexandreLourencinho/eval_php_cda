@@ -19,11 +19,11 @@ $tableTypesMimes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", 
 
 // le tableau des regex utilisées pour le contrôle des champs
 $regexTab = [
-    'titre' => '#[<\/`\'"\>]#',
-    'artiste' => '#[<\/`\'"\>]#',
+    'titre' => '/[<\/`\'"\>#]/',
+    'artiste' => '/[<\/`\'"\>]/',
     'annee' => '#([^0-9] | ^[0-9]{1,3}$ | [0-9]{5,})#x',
-    'genre' => '#[<\`\'"\>]#',
-    'label' => '#[<\/`\'"\>]#',
+    'genre' => '/[<\`\'"\>#]/',
+    'label' => '/[<\/`\'"\>#]/',
     'prix' => '#[^0-9.]#'];
 
 ?>
