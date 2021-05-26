@@ -113,6 +113,11 @@ class crud
         }
     }
 
+    /**
+     * fonction de suppression de disque
+     * @param $disc_id
+     * @return array
+     */
     public function supprimerDisque($disc_id)
     {
         try {
@@ -134,6 +139,17 @@ class crud
 
     }
 
+    /**
+     * fonction de modification d'un dique
+     * @param $titre
+     * @param $annee
+     * @param $label
+     * @param $genre
+     * @param $prix
+     * @param $artiste
+     * @param $id
+     * @return array
+     */
     public function modifierDisque($titre, $annee, $label, $genre, $prix, $artiste, $id)
     {
         try {
@@ -161,6 +177,12 @@ class crud
         }
     }
 
+    /**
+     * fonction de modification de l'image d'illustration d'un disque
+     * @param $image
+     * @param $id
+     * @return array
+     */
     public function modifImage($image, $id)
     {
         try {
@@ -181,9 +203,5 @@ class crud
             return array('resultat' => false, 'message' => $message);
         }
     }
-
-
 }
-
-
 ?>

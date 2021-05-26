@@ -1,49 +1,42 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."/model/crud/crud_record_users.php";
-if(isset($_POST['envoi']) && $_POST['mdp_compte'] === $_POST['mdp_compte_verif']) {
+require $_SERVER['DOCUMENT_ROOT'] . "/model/crud/crud_record_users.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/controller/fonctions/checkForm_user.php";
+
+if (isset($_POST['envoi'])) {
     $tableauFormUser = [
-        'nom_compte'=>$_POST['nom_compte'],
-        'mdp_compte'=>$_POST['mdp_compte'],
-        'mdp_compte_verif'=>$_POST['mdp_compte_verif'],
-        'mail_compte'=>$_POST['mail_compte']
+        'nom' => $_POST['nom_compte'],
+        'mdp' => $_POST['mdp_compte'],
+        'mdp2' => $_POST['mdp_compte_verif'],
+        'mail' => $_POST['mail_compte']
     ];
-    if ($tableauFormUser['mdp_compte'] === $tableauFormUser['mdp_compte_verif'])
-    {
-        //verif regex & co
+    $connexion = new db_records();
+    $crud_user = new crud_user($connexion);
 
-        //hash mdp
-        $mdp=$_POST['mdp_compte'];
-        $connexion = new db_records();
-        $crud_user = new crud_user($connexion);
-        $requete = $crud_user->createUser($tableauFormUser['nom_compte'],$mdp,$tableauFormUser['mail_compte']);
+    $erreurs = checkFormUser($tableauFormUser['nom'], $tableauFormUser['mdp'], $tableauFormUser['mdp2'], $tableauFormUser['mail']);
+    if(!isset($erreurs['nom'])){
+        $nbNoms = $crud_user->rechercheNom($tableauFormUser['nom']);
+        if($nbNoms['0']!=0){
+            // gestion nom deja pris
+            $erreurs['nom']='Ce nom de compte est déjà utilisé, veuillez en choisir un autre.';
+        }
     }
-    else{
-        //tableau erreur mdp
+    if(!isset($erreurs['mail'])){
+        $nbMails= $crud_user->rechercheMail(($tableauFormUser['mail']));
+        if($nbMails['0']!=0){
+            // gestion nom deja pris
+            $erreurs['mail']='Cette adresse éléctronique est déjà utilisée par un autre compte. Si vous avez oublié votre mot de passe, utilisez la fonction pour retourver son mdp';
+        }
     }
 
+    if (count($erreurs) === 0) {
+
+        $mdp = password_hash($tableauFormUser['mdp'], PASSWORD_DEFAULT);
+        $requete = $crud_user->createUser($tableauFormUser['nom'], $mdp, $tableauFormUser['mail']);
+    }
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $titre = 'Création d\'un nouveau compte utilisateur';
-include $_SERVER['DOCUMENT_ROOT']."/view/header_footer/header.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/view/header_footer/header.php";
 ?>

@@ -8,14 +8,22 @@ class crud_user
 
     // instanciation d'objet base de donnée
     private $db;
-
+    /**
+     * crud_user constructor.
+     * @param $conn
+     */
     //construction de l'objet base de donnée pour ce crud : sera appelé a chaque fois
     function __construct($conn)
     {
-        $this->db = $conn->getDbRecord;
+        $this->db = $conn->getDbRecord();
     }
 
-
+    /**
+     * Fonction de création de compte utilisateur
+     * @param $nom
+     * @param $mdp
+     * @param $mail
+     */
     public function createUser($nom,$mdp,$mail)
     {
 
@@ -25,6 +33,22 @@ class crud_user
         $requete->bindValue(":mail",$mail,PDO::PARAM_STR);
         $requete->execute();
 
+    }
+
+    public function rechercheNom($nom){
+        $requete=$this->db->prepare("SELECT COUNT(*) FROM record.utilisateurs WHERE Nom_utilisateur=:nom");
+        $requete->bindValue(':nom',$nom,PDO::PARAM_STR);
+        $requete->execute();
+        $resultat=$requete->fetch();
+        return $resultat;
+    }
+
+    public function rechercheMail($mail){
+        $requete=$this->db->prepare("SELECT COUNT(*) FROM record.utilisateurs WHERE mail_utilisateur=:mail");
+        $requete->bindValue(":mail",$mail,PDO::PARAM_STR);
+        $requete->execute();
+        $resultat=$requete->fetch();
+        return $resultat;
     }
 
 

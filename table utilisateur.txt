@@ -1,0 +1,34 @@
+create table utilisateurs
+(
+	id_utilisateur int auto_increment,
+	nom_utilisateur varchar(50) not null,
+	mdp_utilisateur varchar(80) not null,
+	mail_utilisateur varchar(50) not null,
+	constraint utilisateurs_pk
+		primary key (id_utilisateur)
+);
+
+create unique index utilisateurs_mail_utilisateur_uindex
+	on utilisateurs (mail_utilisateur);
+
+create unique index utilisateurs_nom_utilisateur_uindex
+	on utilisateurs (nom_utilisateur);
+
+
+
+-----------------------------------------------------
+
+
+
+create table droits
+(
+	id_droit int auto_increment,
+	niveau_droit int not null,
+	label_droit varchar(100) not null,
+	constraint droits_pk
+		primary key (id_droit)
+);
+
+create unique index droits_niveau_droit_uindex
+	on droits (niveau_droit);
+
