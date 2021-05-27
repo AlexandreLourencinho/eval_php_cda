@@ -2,8 +2,8 @@
 //appel de la page BDD
 require $_SERVER["DOCUMENT_ROOT"] . "/model/connexion_db/db_records.php";
 
-//définition de la classe crud
-class crud_user
+//définition de la classe crud_user
+class crud_record_users
 {
 
     // instanciation d'objet base de donnée

@@ -3,7 +3,7 @@
 require $_SERVER["DOCUMENT_ROOT"] . "/model/CRUD/CRUD_record.php";
 
 // instanciation d'un nouvel objet de base de donnée, et d'une nouvelle classe crud avec cet objet base de donnée en paramètre
-$connexion = new db_records();
+$connexion = new db_records;
 $crud = new crud($connexion);
 
 //appel des fonctions du nombre de  disque et qui liste tous les détails de tous les disques (cf crud)
