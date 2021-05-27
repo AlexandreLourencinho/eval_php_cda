@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS record;
+DROP DATABASE record;
 
-CREATE DATABASE IF NOT EXISTS record;
+CREATE DATABASE record;
 
 USE record;
 
@@ -35,6 +35,33 @@ CREATE TABLE disc (
 	FOREIGN KEY (artist_id) REFERENCES artist(artist_id)
 );
 
+create table record.droits
+(
+    id_droit     int auto_increment
+        primary key,
+    niveau_droit int          not null,
+    label_droit  varchar(100) not null,
+    constraint droits_niveau_droit_uindex
+        unique (niveau_droit)
+);
+
+create table record.utilisateurs
+(
+    id_utilisateur   int auto_increment
+        primary key,
+    nom_utilisateur  varchar(50) not null,
+    mdp_utilisateur  varchar(80) not null,
+    mail_utilisateur varchar(50) not null,
+    id_droits        int         null,
+    constraint utilisateurs_mail_utilisateur_uindex
+        unique (mail_utilisateur),
+    constraint utilisateurs_nom_utilisateur_uindex
+        unique (nom_utilisateur),
+    constraint id_droits
+        foreign key (id_droits) references record.droits (id_droit)
+);
+
+
 
 INSERT INTO disc (disc_id, disc_title, disc_year, disc_picture, disc_label, disc_genre, disc_price, artist_id) VALUES
 	(1, 'Fugazi', 1984, 'Fugazi.jpeg', 'EMI', 'Prog', 14.99, 7),
@@ -55,3 +82,8 @@ INSERT INTO disc (disc_id, disc_title, disc_year, disc_picture, disc_label, disc
 ;
 
 
+insert into record.droits (id_droit, niveau_droit, label_droit) values (1, 1, 'droits admin');
+
+
+insert into record.utilisateurs (id_utilisateur, nom_utilisateur, mdp_utilisateur, mail_utilisateur, id_droits) values (1, 'admin', '$2y$10$la4QXT63ueDHF1zeaG5Xnux9yCwaxbBXASOufSzlNSZ/QE8E0L932
+', 'alexandre.lourencinho@gmail.com', null);

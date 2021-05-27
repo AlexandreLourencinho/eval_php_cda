@@ -1,34 +1,52 @@
-create table utilisateurs
+create table artist
 (
-	id_utilisateur int auto_increment,
-	nom_utilisateur varchar(50) not null,
-	mdp_utilisateur varchar(80) not null,
-	mail_utilisateur varchar(50) not null,
-	constraint utilisateurs_pk
-		primary key (id_utilisateur)
+    artist_id   int auto_increment
+        primary key,
+    artist_name varchar(255) null,
+    artist_url  varchar(255) null
 );
 
-create unique index utilisateurs_mail_utilisateur_uindex
-	on utilisateurs (mail_utilisateur);
+create table disc
+(
+    disc_id      int auto_increment
+        primary key,
+    disc_title   varchar(255)  null,
+    disc_year    int           null,
+    disc_picture varchar(255)  null,
+    disc_label   varchar(255)  null,
+    disc_genre   varchar(255)  null,
+    disc_price   decimal(6, 2) null,
+    artist_id    int           null,
+    constraint disc_ibfk_1
+        foreign key (artist_id) references artist (artist_id)
+);
 
-create unique index utilisateurs_nom_utilisateur_uindex
-	on utilisateurs (nom_utilisateur);
-
-
-
------------------------------------------------------
-
-
+create index artist_id
+    on disc (artist_id);
 
 create table droits
 (
-	id_droit int auto_increment,
-	niveau_droit int not null,
-	label_droit varchar(100) not null,
-	constraint droits_pk
-		primary key (id_droit)
+    id_droit     int auto_increment
+        primary key,
+    niveau_droit int          not null,
+    label_droit  varchar(100) not null,
+    constraint droits_niveau_droit_uindex
+        unique (niveau_droit)
 );
 
-create unique index droits_niveau_droit_uindex
-	on droits (niveau_droit);
+create table utilisateurs
+(
+    id_utilisateur   int auto_increment
+        primary key,
+    nom_utilisateur  varchar(50) not null,
+    mdp_utilisateur  varchar(80) not null,
+    mail_utilisateur varchar(50) not null,
+    id_droits        int         null,
+    constraint utilisateurs_mail_utilisateur_uindex
+        unique (mail_utilisateur),
+    constraint utilisateurs_nom_utilisateur_uindex
+        unique (nom_utilisateur),
+    constraint id_droits
+        foreign key (id_droits) references droits (id_droit)
+);
 

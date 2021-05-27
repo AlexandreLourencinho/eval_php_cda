@@ -51,5 +51,16 @@ class crud_user
         return $resultat;
     }
 
+    public function rechercheUtilisateurs($nom){
+        $requete=$this->db->prepare("SELECT * FROM record.utilisateurs WHERE nom_utilisateur=:nom");
+        $requete->bindValue(':nom',$nom, PDO::PARAM_STR);
+        if($requete->execute()){
+            $resultat=$requete->fetch(PDO::FETCH_OBJ);
+            return $resultat;
+        }
+        else{
+            return array('resultat'=>false,'message'=>'nom d\'utilisateur ou mot de passe incorrect');
+        }
+    }
 
 }

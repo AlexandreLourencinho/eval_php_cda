@@ -1,4 +1,8 @@
 <?php
+
+if(!isset($_GET['disc_id']) and !isset($_POST['disc_id'])){
+    header('location: ../view/liste_disques.php');
+}
 // appel des pages utilisées
 include $_SERVER["DOCUMENT_ROOT"] . "/controller/fonctions/checkForm.php";
 require $_SERVER["DOCUMENT_ROOT"] . "/model/CRUD/CRUD_record.php";

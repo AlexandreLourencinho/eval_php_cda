@@ -9,6 +9,11 @@ $crud = new crud($conn);
 // appel de la fonction qui donne les détails d'un disuqe
 $resultat = $crud->getRecord();
 
+if(!isset($_GET['disc_id']) and !isset($_POST['disc_id'])){
+    header('location: ../view/liste_disques.php');
+}
+
+
 //titre et header
 $titre = "Détails de " . $resultat->disc_title;
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/header.php";

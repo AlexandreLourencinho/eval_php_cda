@@ -1,8 +1,8 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/controller/controller_creation_compte.php";
 if(!isset($_POST['envoi']) OR isset($_POST['envoi']) AND !empty($erreurs)){
-    $test = password_hash('1234',PASSWORD_DEFAULT);
-    echo $test;
+//    $test = password_hash('1234',PASSWORD_DEFAULT);
+//    echo $test;
 ?>
 
 
