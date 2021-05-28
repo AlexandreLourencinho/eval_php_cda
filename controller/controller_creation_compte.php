@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (isset($_SESSION['login'])) {
+    header("location: ../view/liste_disques.php");
+}
 require $_SERVER['DOCUMENT_ROOT'] . "/model/crud/crud_record_users.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/controller/fonctions/checkForm_user.php";
 

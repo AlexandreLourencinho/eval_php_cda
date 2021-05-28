@@ -3,7 +3,7 @@
 class db_records
 {
     // variables privées qui serviront a construire la connexion
-    private $host = "localhost:3308";
+    private $host = "localhost:3306";
     private $dbname = "record";
     private $charset = "UTF8";
     private $user = "root";

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // appel du crud
 require $_SERVER["DOCUMENT_ROOT"] . "/model/CRUD/CRUD_record.php";
 

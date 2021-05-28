@@ -1,13 +1,14 @@
 <?php
 $titre = "se connecter";
 include $_SERVER['DOCUMENT_ROOT'].'/controller/controller_connexion.php';
-if(!isset($_POST['envoi'])){
+if(!isset($_POST['envoi']) or isset($_POST['envoi']) AND $logs===false OR isset($_POST['envoi']) AND isset($message)){
 ?>
 
     <!--formulaire de connexion-->
 
     <div class="mb-md-5"></div>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form-group col-12 col-md-6 mt-md-5">
+        <p class="<?= isset($message) ? "alert alert-warning" : "" ?> "><?= $message ?? "" ?></p>
         <label for="nom_compte" class="form-label mt-md-5 fondopac text-light">Votre nom de compte : </label>
         <input type="text" class="form-control" id="nom_compte" name="nom_compte" placeholder="Entrez votre nom de compte">
         <label for="mdp_compte" class="form-label fondopac text-light"> Votre mot de passe :</label>
@@ -19,6 +20,7 @@ if(!isset($_POST['envoi'])){
             <a href="#" class=" text-center text-info mb-1">mot de passe oublié?</a>
             <a href="/view/creation_compte.php" class="btn btn-success align-self-center col-12 col-md-8">Pas de compte? Créez en un !</a>
         </div>
+
     </form>
 <?php
 }

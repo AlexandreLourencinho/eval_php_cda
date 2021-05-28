@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("location: ../view/destroy.php");
+}
 
 if(!isset($_GET['disc_id']) and !isset($_POST['disc_id'])){
     header('location: ../view/liste_disques.php');

@@ -1,4 +1,5 @@
 <?php
+session_start();
 //titre et appel du header
 $titre = "Index de l'évaluation php";
 include $_SERVER["DOCUMENT_ROOT"] . "/view/header_footer/header.php";
