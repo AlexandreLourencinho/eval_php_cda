@@ -17,7 +17,7 @@ if(!isset($_POST['envoi']) or isset($_POST['envoi']) AND $logs===false OR isset(
         <input type="text" class="form-control " id="mail_compte" name="mail_compte" placeholder="Entrez votre adresse email">
         <div class="d-flex flex-column mt-3 col-12">
             <button type="submit" class="btn btn-primary mb-1 align-self-center col-12" name="envoi"> Se connecter</button>
-            <a href="#" class=" text-center text-info mb-1">mot de passe oublié?</a>
+            <a href="/view/mdp_oublie.php" class=" text-center text-info mb-1">mot de passe oublié?</a>
             <a href="/view/creation_compte.php" class="btn btn-success align-self-center col-12 col-md-8">Pas de compte? Créez en un !</a>
         </div>
 

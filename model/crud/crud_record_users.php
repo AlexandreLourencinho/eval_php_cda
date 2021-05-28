@@ -35,6 +35,11 @@ class crud_record_users
 
     }
 
+    /**
+     * fonction qui recherche si le nom de compte est deja enregistré quelquepart en bdd
+     * @param $nom
+     * @return mixed
+     */
     public function rechercheNom($nom){
         $requete=$this->db->prepare("SELECT COUNT(*) FROM record.utilisateurs WHERE Nom_utilisateur=:nom");
         $requete->bindValue(':nom',$nom,PDO::PARAM_STR);
@@ -43,6 +48,11 @@ class crud_record_users
         return $resultat;
     }
 
+    /**
+     * fonction qui regarde si le mail est djà enregistré quelquepart en bdd
+     * @param $mail
+     * @return mixed
+     */
     public function rechercheMail($mail){
         $requete=$this->db->prepare("SELECT COUNT(*) FROM record.utilisateurs WHERE mail_utilisateur=:mail");
         $requete->bindValue(":mail",$mail,PDO::PARAM_STR);
@@ -51,6 +61,24 @@ class crud_record_users
         return $resultat;
     }
 
+    /**
+     * fonction de recherche d'utilisateur par adresse mail pour le mdp perdu
+     * @param $mail
+     * @return mixed
+     */
+    public function rechercheMailMdpPerdu($mail){
+        $requete=$this->db->prepare("SELECT utilisateurs.mail_utilisateur FROM record.utilisateurs WHERE mail_utilisateur=:mail");
+        $requete->bindValue(":mail",$mail,PDO::PARAM_STR);
+        $requete->execute();
+        $resultat=$requete->fetch(PDO::FETCH_OBJ);
+        return $resultat;
+    }
+
+    /**
+     * récupère les infos via le nom de compte utilisateur
+     * @param $nom
+     * @return array
+     */
     public function rechercheUtilisateurs($nom){
         $requete=$this->db->prepare("SELECT * FROM record.utilisateurs WHERE nom_utilisateur=:nom");
         $requete->bindValue(':nom',$nom, PDO::PARAM_STR);
@@ -61,6 +89,19 @@ class crud_record_users
         else{
             return array('resultat'=>false,'message'=>'nom d\'utilisateur ou mot de passe incorrect');
         }
+    }
+
+    public function tokenMdp($token,$mail){
+        $requete=$this->db->prepare("UPDATE record.utilisateurs SET token_recup=:token WHERE utilisateurs.mail_utilisateur=:mail");
+        $requete->bindValue(':token',$token,PDO::PARAM_INT);
+        $requete->bindValue(':mail',$mail,PDO::PARAM_STR);
+        if($requete->execute()){
+            return array('resultat'=>true,'message'=>'réussite');
+        }
+        else{
+            return array('resultat'=>false,'message'=>'echec');
+        }
+
     }
 
 }

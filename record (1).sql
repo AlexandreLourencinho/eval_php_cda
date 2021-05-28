@@ -53,13 +53,17 @@ create table record.utilisateurs
     mdp_utilisateur  varchar(80) not null,
     mail_utilisateur varchar(50) not null,
     id_droits        int         null,
+    token_recup      int         null,
     constraint utilisateurs_mail_utilisateur_uindex
         unique (mail_utilisateur),
     constraint utilisateurs_nom_utilisateur_uindex
         unique (nom_utilisateur),
+    constraint utilisateurs_token_recup_uindex
+        unique (token_recup),
     constraint id_droits
         foreign key (id_droits) references record.droits (id_droit)
 );
+
 
 
 
