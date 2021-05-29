@@ -1,20 +1,12 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'].'/controller/controller_modifier_le_mdp.php';
-?>
-
-
-
-
-
-
-<?php
-if($modif===false){
+if(isset($modif) and $modif===false){
 ?>
     <h1><?= $message ?></h1>
     <?php
     header("refresh: 5; url=/view/mdp_oublie.php");
 }
-else{
+elseif(isset($modif) and $modif===true){
     ?>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="form-group">
         <label for="mdp" class="form-label">Entrez votre mot de passe : *</label>
