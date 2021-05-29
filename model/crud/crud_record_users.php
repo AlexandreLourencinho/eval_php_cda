@@ -91,6 +91,12 @@ class crud_record_users
         }
     }
 
+    /**
+     * inscrit le token en bdd pour la recup de mdp
+     * @param $token
+     * @param $mail
+     * @return array
+     */
     public function tokenMdp($token,$mail){
         $requete=$this->db->prepare("UPDATE record.utilisateurs SET token_recup=:token WHERE utilisateurs.mail_utilisateur=:mail");
         $requete->bindValue(':token',$token,PDO::PARAM_INT);
@@ -103,5 +109,45 @@ class crud_record_users
         }
 
     }
+
+
+    /**
+     * recup le compte où le token est stocké
+     * @param $token
+     * @return array
+     */
+    public function recupMdp($token){
+        $requete= $this->db->prepare("SELECT * FROM record.utilisateurs WHERE token_recup=:token");
+        $requete->bindValue(":token",$token,PDO::PARAM_INT);
+        if($requete->execute()){
+            return $resultat=$requete->fetch(PDO::FETCH_OBJ);
+        }
+        else{
+            return array('resultat'=>false,'message'=>'echec');
+        }
+
+    }
+
+
+    /**
+     * change le mdp
+     * @param $token
+     * @param $mdp
+     * @return array
+     */
+    public function changeMdp($token,$mdp){
+        $requete=$this->db->prepare("UPDATE record.utilisateurs SET utilisateurs.mdp_utilisateur=:mdp WHERE utilisateurs.token_recup=:token");
+        $requete->bindValue(':mdp',$mdp,PDO::PARAM_STR);
+        $requete->bindValue(':token',$token,PDO::PARAM_INT);
+        if($requete->execute()){
+            return array('resultat'=>true,'message'=>'reussite');
+        }
+        else{
+            return array('resultat'=>false,'message'=>'echec');
+        }
+
+    }
+
+
 
 }
